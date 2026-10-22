@@ -59,7 +59,7 @@ void EmptyLinkFunctionForGeneratedCodeFabricaPlataformas() {}
 		0,
 		0,
 		0,
-		0x009000A4u,
+		0x009000A5u,
 		METADATA_PARAMS(Z_Construct_UClass_AFabricaPlataformas_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_AFabricaPlataformas_Statics::Class_MetaDataParams))
 	};
 	UClass* Z_Construct_UClass_AFabricaPlataformas()
@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodeFabricaPlataformas() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AFabricaPlataformas, 2388227773);
+	IMPLEMENT_CLASS(AFabricaPlataformas, 2424209886);
 	template<> AVENTURAUSFX022026L1_API UClass* StaticClass<AFabricaPlataformas>()
 	{
 		return AFabricaPlataformas::StaticClass();

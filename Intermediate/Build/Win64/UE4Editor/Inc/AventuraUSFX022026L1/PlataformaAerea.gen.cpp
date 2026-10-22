@@ -40,7 +40,6 @@ void EmptyLinkFunctionForGeneratedCodePlataformaAerea() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlataformaAerea_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
 		{ "IncludePath", "PlataformaAerea.h" },
 		{ "ModuleRelativePath", "PlataformaAerea.h" },
 	};
@@ -72,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodePlataformaAerea() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlataformaAerea, 4194049611);
+	IMPLEMENT_CLASS(APlataformaAerea, 3902647266);
 	template<> AVENTURAUSFX022026L1_API UClass* StaticClass<APlataformaAerea>()
 	{
 		return APlataformaAerea::StaticClass();

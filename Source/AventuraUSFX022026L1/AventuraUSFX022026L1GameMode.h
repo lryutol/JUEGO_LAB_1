@@ -7,6 +7,7 @@
 #include "AventuraUSFX022026L1GameMode.generated.h"
 
 class APlataforma;
+class AEnemigo;
 class AInventory;
 
 UCLASS(MinimalAPI)
@@ -18,24 +19,23 @@ public:
 	AAventuraUSFX022026L1GameMode();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 private:
 	AInventory* Inventory;
 
 public:
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
+
+	// Plataformas
 	TArray<APlataforma*> aPlataformas;
-	
 	FTimerHandle TimerEliminarPlataforma;
-
 	void EliminarPlataforma();
-
 	int tipoPlataformaActual;
+
+	// Enemigos
+	TArray<AEnemigo*> aEnemigos;
+	FTimerHandle TimerEliminarEnemigo;
+	void EliminarEnemigo();
+	int tipoEnemigoActual;
 };
-
-
-

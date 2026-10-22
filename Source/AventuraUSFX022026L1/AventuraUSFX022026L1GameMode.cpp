@@ -1,21 +1,26 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
-#include "AventuraUSFX022026L1GameMode.h"
+﻿#include "AventuraUSFX022026L1GameMode.h"
 #include "AventuraUSFX022026L1Pawn.h"
 #include "Plataforma.h"
-#include "PlataformaAerea.h"
-#include "PlataformaTerrestre.h"
-#include "PlataformaSubterranea.h"
-#include "PlataformaAcuatica.h"
+#include "Enemigo.h"
 #include "Inventory.h"
+
+// Fábricas de plataformas
 #include "FabricaPlataformas.h"
+#include "FabricaAerea.h"
+#include "FabricaTerrestre.h"
+#include "FabricaAcuatica.h"
+#include "FabricaSubterranea.h"
+
+// Fábricas de enemigos
+#include "FabricaEnemigos.h"
+#include "FabricaEnemigosNaturales.h"
+#include "FabricaEnemigosTecnologicos.h"
 
 AAventuraUSFX022026L1GameMode::AAventuraUSFX022026L1GameMode()
 {
-	// set default pawn class to our character class
 	DefaultPawnClass = AAventuraUSFX022026L1Pawn::StaticClass();
-
 	tipoPlataformaActual = 0;
+	tipoEnemigoActual = 0;
 }
 
 void AAventuraUSFX022026L1GameMode::BeginPlay()
@@ -23,107 +28,104 @@ void AAventuraUSFX022026L1GameMode::BeginPlay()
 	Super::BeginPlay();
 
 	UWorld* World = GetWorld();
+	if (World == nullptr) return;
 
-	if (World == nullptr)
-	{
-		return;
-	}
+	// PLATAFORMAS (Factory Method)
+	TArray<AFabricaPlataformas*> FabricasDisponibles;
+	FabricasDisponibles.Add(World->SpawnActor<AFabricaAerea>(AFabricaAerea::StaticClass()));
+	FabricasDisponibles.Add(World->SpawnActor<AFabricaTerrestre>(AFabricaTerrestre::StaticClass()));
+	FabricasDisponibles.Add(World->SpawnActor<AFabricaAcuatica>(AFabricaAcuatica::StaticClass()));
+	FabricasDisponibles.Add(World->SpawnActor<AFabricaSubterranea>(AFabricaSubterranea::StaticClass()));
 
-	//Implementacion de utilizacion de singleton para el inventario
-	//Create 4 Inventory
-	/*
-	for (int i = 0; i <= 4; i++)
+	for (AFabricaPlataformas* FabricaActual : FabricasDisponibles)
 	{
-		AInventory* SpawnedInventory = GetWorld()->SpawnActor<AInventory>(AInventory::StaticClass());
-	
-		if (SpawnedInventory)
+		if (FabricaActual == nullptr) continue;
+
+		GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Yellow,
+			FString::Printf(TEXT("Fabrica Plataforma: %s"), *FabricaActual->GetClass()->GetName()));
+
+		FRotator Rotacion = FRotator::ZeroRotator;
+
+		for (int i = 0; i < 10; i++)
 		{
-			//If the Spawn succeeds, set the Spawned inventory to the local one
-			//and log the success string
-			Inventory = SpawnedInventory;
-			GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("%s has been created"), *Inventory->GetName()));
+			FVector SpawnLocation = FVector(
+				FMath::RandRange(-1500.0f, 1500.0f),
+				FMath::RandRange(-1500.0f, 1500.0f),
+				FMath::RandRange(50.0f, 1000.0f));
+
+			APlataforma* NuevaPlataforma = FabricaActual->CrearPlataforma(SpawnLocation, Rotacion);
+			if (NuevaPlataforma)
+			{
+				aPlataformas.Add(NuevaPlataforma);
+			}
 		}
 	}
-	*/
 
-	AFabricaPlataformas* FabricaPlataformas = World->SpawnActor<AFabricaPlataformas>(AFabricaPlataformas::StaticClass());
-		
+	// ENEMIGOS (Abstract Factory)
+	TArray<AFabricaEnemigos*> FabricasEnemigos;
+	FabricasEnemigos.Add(World->SpawnActor<AFabricaEnemigosNaturales>(AFabricaEnemigosNaturales::StaticClass()));
+	FabricasEnemigos.Add(World->SpawnActor<AFabricaEnemigosTecnologicos>(AFabricaEnemigosTecnologicos::StaticClass()));
 
-	FRotator Rotacion = FRotator::ZeroRotator;
-	FVector SpawnLocation = FVector::ZeroVector;
-	
+	TArray<FIntVector> CantidadesPorFamilia;
+	CantidadesPorFamilia.Add(FIntVector(5, 5, 5));  //  Naturales
+	CantidadesPorFamilia.Add(FIntVector(3, 3, 3));  //  Tecnológicos
 
-	Rotacion = FRotator(0.0f, 0.0f, 0.0f);
-	SpawnLocation = FVector(-950.0f, 50.0f, 200.0f);
+	// Bucle que recorre cada familia
+	for (int f = 0; f < FabricasEnemigos.Num(); f++)
+	{
+		AFabricaEnemigos* FabricaActual = FabricasEnemigos[f];
+		if (FabricaActual == nullptr) continue;
+		if (f >= CantidadesPorFamilia.Num()) continue;
 
-	for (int i = 0; i < 10; i++) {
-		SpawnLocation = FVector(FMath::RandRange(-1500.0f, 1500.0f), FMath::RandRange(-1500.0f, 1500.0f), FMath::RandRange(50.0f, 1000.0f));
-		FabricaPlataformas->CrearPlataforma("Aerea", SpawnLocation, Rotacion);
+		FIntVector Cantidades = CantidadesPorFamilia[f];
+
+		GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Cyan,
+			FString::Printf(TEXT("%s -> Aereos:%d Acuaticos:%d Terrestres:%d"),
+				*FabricaActual->GetClass()->GetName(),
+				Cantidades.X, Cantidades.Y, Cantidades.Z));
+
+		FRotator Rotacion = FRotator::ZeroRotator;
+
+		// Aereos
+		for (int i = 0; i < Cantidades.X; i++)
+		{
+			FVector Loc = FVector(
+				FMath::RandRange(-1500.0f, 1500.0f),
+				FMath::RandRange(-1500.0f, 1500.0f),
+				FMath::RandRange(800.0f, 1400.0f));
+
+			AEnemigo* N = FabricaActual->CrearEnemigoAereo(Loc, Rotacion);
+			if (N) aEnemigos.Add(N);
+		}
+
+		// Acuaticos
+		for (int i = 0; i < Cantidades.Y; i++)
+		{
+			FVector Loc = FVector(
+				FMath::RandRange(-1000.0f, 1000.0f),
+				FMath::RandRange(-1000.0f, 1000.0f),
+				FMath::RandRange(300.0f, 700.0f));
+
+			AEnemigo* N = FabricaActual->CrearEnemigoAcuatico(Loc, Rotacion);
+			if (N) aEnemigos.Add(N);
+		}
+
+		// Terrestres
+		for (int i = 0; i < Cantidades.Z; i++)
+		{
+			FVector Loc = FVector(
+				FMath::RandRange(-1200.0f, 1200.0f),
+				FMath::RandRange(-1200.0f, 1200.0f),
+				FMath::RandRange(100.0f, 300.0f));
+
+			AEnemigo* N = FabricaActual->CrearEnemigoTerrestre(Loc, Rotacion);
+			if (N) aEnemigos.Add(N);
+		}
 	}
 
-	/*
-	//ETipoPlataforma tipoPlataformaActual;
-	int tipoPlataformaRandom;
-
-	for (int i = 0; i < 50; i++) {
-		
-		SpawnLocation = FVector(FMath::RandRange(-1500.0f, 1500.0f), FMath::RandRange(-1500.0f, 1500.0f), FMath::RandRange(50.0f, 1000.0f));
-
-		//plataformaActual->movimientoDireccion = FVector(1.0f, 0.0f, 0.0f);
-		
-		
-		tipoPlataformaRandom = FMath::RandRange(0, 3);
-
-		switch (tipoPlataformaRandom) {
-			case 0:
-				plataformaActual = World->SpawnActor<APlataformaAerea>(SpawnLocation, Rotacion);
-
-				//tipoPlataformaActual = ETipoPlataforma::PLATAFORMA_AEREA;
-				break;
-			case 1:
-				plataformaActual = World->SpawnActor<APlataformaTerrestre>(SpawnLocation, Rotacion);
-				//tipoPlataformaActual = ETipoPlataforma::PLATAFORMA_TERRESTRE;
-				break;
-			case 2:
-				plataformaActual = World->SpawnActor<APlataformaSubterranea>(SpawnLocation, Rotacion);
-				//tipoPlataformaActual = ETipoPlataforma::PLATAFORMA_SUBTERRANEA;
-				break;
-			case 3:
-				plataformaActual = World->SpawnActor<APlataformaAcuatica>(SpawnLocation, Rotacion);
-				//tipoPlataformaActual = ETipoPlataforma::PLATAFORMA_ACUATICA;
-				break;
-			default:
-				//tipoPlataformaActual = ETipoPlataforma::PLATAFORMA_TERRESTRE;
-				break;
-			}
-		
-		aPlataformas.Add(plataformaActual);
-
-	}
-	*/
-	/*
-
-	plataformaActual = World->SpawnActor<APlataformaAerea>(SpawnLocation, Rotacion);
-	//plataformaActual->movimientoDireccion = FVector(1.0f, 1.0f, 0.0f);
-	aPlataformas.Add(plataformaActual);
-
-	Rotacion = FRotator(0.0f, 0.0f, 0.0f);
-	SpawnLocation = FVector(-950.0f, 50.0f, 200.0f);
-	
-	for (int i = 0; i < 10; i++) {
-		SpawnLocation = FVector(FMath::RandRange(-1500.0f, 1500.0f), FMath::RandRange(-1500.0f, 1500.0f), FMath::RandRange(50.0f, 1000.0f));
-	
-		plataformaActual = World->SpawnActor<APlataforma>(SpawnLocation, Rotacion);
-		plataformaActual->movimientoDireccion = FVector(1.0f, 0.0f, 0.0f);
-		aPlataformas.Add(plataformaActual);
-
-		plataformaActual = World->SpawnActor<APlataforma>(SpawnLocation, Rotacion);
-		plataformaActual->movimientoDireccion = FVector(0.0f, 1.0f, 0.0f);
-		aPlataformas.Add(plataformaActual);
-	}
-	*/
+	// TIMERS
 	GetWorldTimerManager().SetTimer(TimerEliminarPlataforma, this, &AAventuraUSFX022026L1GameMode::EliminarPlataforma, 1.0f, true);
-
+	GetWorldTimerManager().SetTimer(TimerEliminarEnemigo, this, &AAventuraUSFX022026L1GameMode::EliminarEnemigo, 3.0f, true);
 }
 
 void AAventuraUSFX022026L1GameMode::Tick(float DeltaTime)
@@ -133,64 +135,30 @@ void AAventuraUSFX022026L1GameMode::Tick(float DeltaTime)
 
 void AAventuraUSFX022026L1GameMode::EliminarPlataforma()
 {
-	//switch (tipoPlataformaActual){
-	//	case 0:
-	//		tipoPlataformaActual = 1;
-	//		break;
-	//	case 1:
-	//		tipoPlataformaActual = 2;
-	//		break;
-	//	case 2:
-	//		tipoPlataformaActual = 3;
-	//		break;
-	//	case 3:
-	//		tipoPlataformaActual = 0;
-	//		break;
-	//	default:
-	//		//int32 Indice = FMath::RandRange(0, aPlataformas.Num());
-	//		break;
-	//}
-
 	for (int32 i = 0; i < aPlataformas.Num(); i++)
 	{
-		if (aPlataformas[i] != nullptr)
+		if (aPlataformas[i] != nullptr && aPlataformas[i]->tipoPlataforma == static_cast<ETipoPlataforma>(tipoPlataformaActual))
 		{
-			// Verifica si la plataforma es de tipo ATerrestre
-			APlataforma * plataformaActual = aPlataformas[i];
-
-			if (plataformaActual != nullptr)
-			{
-				if (plataformaActual->tipoPlataforma == static_cast<ETipoPlataforma>(tipoPlataformaActual))
-				{
-					// Eliminamos el objeto del escenario
-					plataformaActual->Destroy();
-
-					// Lo eliminamos tambi�n del TArray
-					aPlataformas.RemoveAt(i);
-
-					// Salimos del bucle despu�s de eliminar el primero
-					break;
-				}
-			}
+			aPlataformas[i]->Destroy();
+			aPlataformas.RemoveAt(i);
+			break;
 		}
 	}
-	if (tipoPlataformaActual >= 3)
-	{
-		tipoPlataformaActual = 0;
-	}
-	else
-		tipoPlataformaActual++;
 
-	/*if (aPlataformas.IsValidIndex(Indice))
-	{
-		if (IsValid(aPlataformas[Indice]))
-		{
-			aPlataformas[Indice]->Destroy();
-
-			aPlataformas[Indice] = nullptr;
-			aPlataformas.RemoveAt(Indice);
-		}
-	}*/
-
+	tipoPlataformaActual = (tipoPlataformaActual >= 3) ? 0 : tipoPlataformaActual + 1;
 }
 
+void AAventuraUSFX022026L1GameMode::EliminarEnemigo()
+{
+	for (int32 i = 0; i < aEnemigos.Num(); i++)
+	{
+		if (aEnemigos[i] != nullptr && aEnemigos[i]->tipoEnemigo == static_cast<ETipoEnemigo>(tipoEnemigoActual))
+		{
+			aEnemigos[i]->Destroy();
+			aEnemigos.RemoveAt(i);
+			break;
+		}
+	}
+
+	tipoEnemigoActual = (tipoEnemigoActual >= 2) ? 0 : tipoEnemigoActual + 1;
+}

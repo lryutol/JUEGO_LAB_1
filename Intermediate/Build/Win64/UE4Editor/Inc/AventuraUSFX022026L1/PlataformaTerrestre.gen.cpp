@@ -40,7 +40,6 @@ void EmptyLinkFunctionForGeneratedCodePlataformaTerrestre() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlataformaTerrestre_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
 		{ "IncludePath", "PlataformaTerrestre.h" },
 		{ "ModuleRelativePath", "PlataformaTerrestre.h" },
 	};
@@ -72,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodePlataformaTerrestre() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlataformaTerrestre, 3557303052);
+	IMPLEMENT_CLASS(APlataformaTerrestre, 3372357477);
 	template<> AVENTURAUSFX022026L1_API UClass* StaticClass<APlataformaTerrestre>()
 	{
 		return APlataformaTerrestre::StaticClass();

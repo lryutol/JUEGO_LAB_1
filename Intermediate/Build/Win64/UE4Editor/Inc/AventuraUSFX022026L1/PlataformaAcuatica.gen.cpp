@@ -40,7 +40,6 @@ void EmptyLinkFunctionForGeneratedCodePlataformaAcuatica() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlataformaAcuatica_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
 		{ "IncludePath", "PlataformaAcuatica.h" },
 		{ "ModuleRelativePath", "PlataformaAcuatica.h" },
 	};
@@ -72,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodePlataformaAcuatica() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlataformaAcuatica, 2150418543);
+	IMPLEMENT_CLASS(APlataformaAcuatica, 2190876625);
 	template<> AVENTURAUSFX022026L1_API UClass* StaticClass<APlataformaAcuatica>()
 	{
 		return APlataformaAcuatica::StaticClass();

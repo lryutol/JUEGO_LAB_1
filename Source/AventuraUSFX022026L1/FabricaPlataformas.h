@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,23 +6,19 @@
 
 class APlataforma;
 
-UCLASS()
+UCLASS(Abstract)
 class AVENTURAUSFX022026L1_API AFabricaPlataformas : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
+
+public:
 	AFabricaPlataformas();
 
-	APlataforma* CrearPlataforma(FString _tipoPlataforma, FVector Location, FRotator Rotation);
+	virtual APlataforma* CrearPlataforma(FVector Location, FRotator Rotation) PURE_VIRTUAL(AFabricaPlataformas::CrearPlataforma, return nullptr;);
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
+public:
 	virtual void Tick(float DeltaTime) override;
-
 };

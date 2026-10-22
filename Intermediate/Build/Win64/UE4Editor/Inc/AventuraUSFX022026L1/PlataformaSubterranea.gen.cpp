@@ -40,7 +40,6 @@ void EmptyLinkFunctionForGeneratedCodePlataformaSubterranea() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlataformaSubterranea_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
 		{ "IncludePath", "PlataformaSubterranea.h" },
 		{ "ModuleRelativePath", "PlataformaSubterranea.h" },
 	};
@@ -72,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodePlataformaSubterranea() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlataformaSubterranea, 2751156772);
+	IMPLEMENT_CLASS(APlataformaSubterranea, 1569466476);
 	template<> AVENTURAUSFX022026L1_API UClass* StaticClass<APlataformaSubterranea>()
 	{
 		return APlataformaSubterranea::StaticClass();

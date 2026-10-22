@@ -231,8 +231,8 @@
 /I Editor\Kismet\Public
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\ClothingSystemRuntimeInterface
 /I Runtime\ClothingSystemRuntimeInterface\Public
-/I D:\src_SIS457\AventuraUSFX022026L1\Intermediate\Build\Win64\UE4Editor\Inc\AventuraUSFX022026L1
-/I D:\src_SIS457\AventuraUSFX022026L1\Source
+/I C:\avanzada\fact\AventuraUSFX022026L1\Intermediate\Build\Win64\UE4Editor\Inc\AventuraUSFX022026L1
+/I C:\avanzada\fact\AventuraUSFX022026L1\Source
 /I ThirdParty\PhysX3\PxShared\include
 /I ThirdParty\PhysX3\PxShared\include\cudamanager
 /I ThirdParty\PhysX3\PxShared\include\filebuf
@@ -256,18 +256,18 @@
 /I ThirdParty\PhysX3\APEX_1.4\shared\general\RenderDebug\public
 /I ThirdParty\PhysX3\APEX_1.4\shared\general\PairFilter\include
 /I ThirdParty\PhysX3\APEX_1.4\shared\internal\include
-/I "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\INCLUDE"
-/I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um"
+/I "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\INCLUDE"
+/I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\winrt"
-/FI"D:\src_SIS457\AventuraUSFX022026L1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Yu"D:\src_SIS457\AventuraUSFX022026L1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Fp"D:\src_SIS457\AventuraUSFX022026L1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-"D:\src_SIS457\AventuraUSFX022026L1\Source\AventuraUSFX022026L1\AventuraUSFX022026L1GameMode.cpp"
-/FI"D:\src_SIS457\AventuraUSFX022026L1\Intermediate\Build\Win64\UE4Editor\Development\AventuraUSFX022026L1\Definitions.AventuraUSFX022026L1.h"
-/Fo"D:\src_SIS457\AventuraUSFX022026L1\Intermediate\Build\Win64\UE4Editor\Development\AventuraUSFX022026L1\AventuraUSFX022026L1GameMode.cpp.obj"
+/FI"C:\avanzada\fact\AventuraUSFX022026L1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Yu"C:\avanzada\fact\AventuraUSFX022026L1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"C:\avanzada\fact\AventuraUSFX022026L1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+"C:\avanzada\fact\AventuraUSFX022026L1\Source\AventuraUSFX022026L1\AventuraUSFX022026L1GameMode.cpp"
+/FI"C:\avanzada\fact\AventuraUSFX022026L1\Intermediate\Build\Win64\UE4Editor\Development\AventuraUSFX022026L1\Definitions.AventuraUSFX022026L1.h"
+/Fo"C:\avanzada\fact\AventuraUSFX022026L1\Intermediate\Build\Win64\UE4Editor\Development\AventuraUSFX022026L1\AventuraUSFX022026L1GameMode.cpp.obj"
 /TP
 /GR-
 /W4
