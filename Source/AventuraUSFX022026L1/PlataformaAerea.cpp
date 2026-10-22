@@ -7,12 +7,12 @@ APlataformaAerea::APlataformaAerea()
 {
 	tipoPlataforma = ETipoPlataforma::PLATAFORMA_AEREA;
 
-	// Malla AÉREA: esfera (globo aerostático)
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Sphere.Shape_Sphere'"));
+	// NUEVA MALLA AÉREA: SM_Box_5
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/SciFi_Props/Models/SM_Box_5.SM_Box_5'"));
 	if (MeshAsset.Succeeded())
 	{
 		mallaPlataforma->SetStaticMesh(MeshAsset.Object);
-		mallaPlataforma->SetWorldScale3D(FVector(2.0f, 2.0f, 0.5f));
+		mallaPlataforma->SetWorldScale3D(FVector(2.0f, 2.0f, 0.5f)); // Ajusta la escala si es necesario
 	}
 
 	// Movimiento: rápido, en las 3 dimensiones

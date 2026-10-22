@@ -4,14 +4,12 @@
 #include "Enemigo.h"
 #include "Inventory.h"
 
-// Fábricas de plataformas
 #include "FabricaPlataformas.h"
 #include "FabricaAerea.h"
 #include "FabricaTerrestre.h"
 #include "FabricaAcuatica.h"
 #include "FabricaSubterranea.h"
 
-// Fábricas de enemigos
 #include "FabricaEnemigos.h"
 #include "FabricaEnemigosNaturales.h"
 #include "FabricaEnemigosTecnologicos.h"
@@ -30,7 +28,9 @@ void AAventuraUSFX022026L1GameMode::BeginPlay()
 	UWorld* World = GetWorld();
 	if (World == nullptr) return;
 
-	// PLATAFORMAS (Factory Method)
+	 
+	// PLATAFORMAS
+	
 	TArray<AFabricaPlataformas*> FabricasDisponibles;
 	FabricasDisponibles.Add(World->SpawnActor<AFabricaAerea>(AFabricaAerea::StaticClass()));
 	FabricasDisponibles.Add(World->SpawnActor<AFabricaTerrestre>(AFabricaTerrestre::StaticClass()));
@@ -41,36 +41,26 @@ void AAventuraUSFX022026L1GameMode::BeginPlay()
 	{
 		if (FabricaActual == nullptr) continue;
 
-		GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Yellow,
-			FString::Printf(TEXT("Fabrica Plataforma: %s"), *FabricaActual->GetClass()->GetName()));
-
 		FRotator Rotacion = FRotator::ZeroRotator;
-
 		for (int i = 0; i < 10; i++)
 		{
-			FVector SpawnLocation = FVector(
-				FMath::RandRange(-1500.0f, 1500.0f),
-				FMath::RandRange(-1500.0f, 1500.0f),
-				FMath::RandRange(50.0f, 1000.0f));
-
+			FVector SpawnLocation = FVector(FMath::RandRange(-1500.0f, 1500.0f), FMath::RandRange(-1500.0f, 1500.0f), FMath::RandRange(50.0f, 1000.0f));
 			APlataforma* NuevaPlataforma = FabricaActual->CrearPlataforma(SpawnLocation, Rotacion);
-			if (NuevaPlataforma)
-			{
-				aPlataformas.Add(NuevaPlataforma);
-			}
+			if (NuevaPlataforma) aPlataformas.Add(NuevaPlataforma);
 		}
 	}
 
-	// ENEMIGOS (Abstract Factory)
+	
+	// ENEMIGOS
+	
 	TArray<AFabricaEnemigos*> FabricasEnemigos;
 	FabricasEnemigos.Add(World->SpawnActor<AFabricaEnemigosNaturales>(AFabricaEnemigosNaturales::StaticClass()));
 	FabricasEnemigos.Add(World->SpawnActor<AFabricaEnemigosTecnologicos>(AFabricaEnemigosTecnologicos::StaticClass()));
 
 	TArray<FIntVector> CantidadesPorFamilia;
-	CantidadesPorFamilia.Add(FIntVector(5, 5, 5));  //  Naturales
-	CantidadesPorFamilia.Add(FIntVector(3, 3, 3));  //  Tecnológicos
+	CantidadesPorFamilia.Add(FIntVector(5, 5, 5));  // Naturales
+	CantidadesPorFamilia.Add(FIntVector(5, 5, 5));  // Tecnológicos
 
-	// Bucle que recorre cada familia
 	for (int f = 0; f < FabricasEnemigos.Num(); f++)
 	{
 		AFabricaEnemigos* FabricaActual = FabricasEnemigos[f];
@@ -78,34 +68,20 @@ void AAventuraUSFX022026L1GameMode::BeginPlay()
 		if (f >= CantidadesPorFamilia.Num()) continue;
 
 		FIntVector Cantidades = CantidadesPorFamilia[f];
-
-		GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Cyan,
-			FString::Printf(TEXT("%s -> Aereos:%d Acuaticos:%d Terrestres:%d"),
-				*FabricaActual->GetClass()->GetName(),
-				Cantidades.X, Cantidades.Y, Cantidades.Z));
-
 		FRotator Rotacion = FRotator::ZeroRotator;
 
-		// Aereos
+		// Aéreos
 		for (int i = 0; i < Cantidades.X; i++)
 		{
-			FVector Loc = FVector(
-				FMath::RandRange(-1500.0f, 1500.0f),
-				FMath::RandRange(-1500.0f, 1500.0f),
-				FMath::RandRange(800.0f, 1400.0f));
-
+			FVector Loc = FVector(FMath::RandRange(-1500.0f, 1500.0f), FMath::RandRange(-1500.0f, 1500.0f), FMath::RandRange(800.0f, 1400.0f));
 			AEnemigo* N = FabricaActual->CrearEnemigoAereo(Loc, Rotacion);
 			if (N) aEnemigos.Add(N);
 		}
 
-		// Acuaticos
+		// Acuáticos
 		for (int i = 0; i < Cantidades.Y; i++)
 		{
-			FVector Loc = FVector(
-				FMath::RandRange(-1000.0f, 1000.0f),
-				FMath::RandRange(-1000.0f, 1000.0f),
-				FMath::RandRange(300.0f, 700.0f));
-
+			FVector Loc = FVector(FMath::RandRange(-1000.0f, 1000.0f), FMath::RandRange(-1000.0f, 1000.0f), FMath::RandRange(300.0f, 700.0f));
 			AEnemigo* N = FabricaActual->CrearEnemigoAcuatico(Loc, Rotacion);
 			if (N) aEnemigos.Add(N);
 		}
@@ -113,11 +89,7 @@ void AAventuraUSFX022026L1GameMode::BeginPlay()
 		// Terrestres
 		for (int i = 0; i < Cantidades.Z; i++)
 		{
-			FVector Loc = FVector(
-				FMath::RandRange(-1200.0f, 1200.0f),
-				FMath::RandRange(-1200.0f, 1200.0f),
-				FMath::RandRange(100.0f, 300.0f));
-
+			FVector Loc = FVector(FMath::RandRange(-1200.0f, 1200.0f), FMath::RandRange(-1200.0f, 1200.0f), FMath::RandRange(100.0f, 300.0f));
 			AEnemigo* N = FabricaActual->CrearEnemigoTerrestre(Loc, Rotacion);
 			if (N) aEnemigos.Add(N);
 		}
@@ -125,7 +97,7 @@ void AAventuraUSFX022026L1GameMode::BeginPlay()
 
 	// TIMERS
 	GetWorldTimerManager().SetTimer(TimerEliminarPlataforma, this, &AAventuraUSFX022026L1GameMode::EliminarPlataforma, 1.0f, true);
-	GetWorldTimerManager().SetTimer(TimerEliminarEnemigo, this, &AAventuraUSFX022026L1GameMode::EliminarEnemigo, 3.0f, true);
+	GetWorldTimerManager().SetTimer(TimerEliminarEnemigo, this, &AAventuraUSFX022026L1GameMode::EliminarEnemigo, 5.0f, true); // Aumenté a 5s para que duren un poco más
 }
 
 void AAventuraUSFX022026L1GameMode::Tick(float DeltaTime)
@@ -144,7 +116,6 @@ void AAventuraUSFX022026L1GameMode::EliminarPlataforma()
 			break;
 		}
 	}
-
 	tipoPlataformaActual = (tipoPlataformaActual >= 3) ? 0 : tipoPlataformaActual + 1;
 }
 
@@ -159,6 +130,5 @@ void AAventuraUSFX022026L1GameMode::EliminarEnemigo()
 			break;
 		}
 	}
-
 	tipoEnemigoActual = (tipoEnemigoActual >= 2) ? 0 : tipoEnemigoActual + 1;
 }

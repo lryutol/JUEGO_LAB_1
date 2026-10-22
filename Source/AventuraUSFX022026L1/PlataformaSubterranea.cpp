@@ -7,12 +7,12 @@ APlataformaSubterranea::APlataformaSubterranea()
 {
 	tipoPlataforma = ETipoPlataforma::PLATAFORMA_SUBTERRANEA;
 
-	// Malla SUBTERRÁNEA: cono (taladro)
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Cone.Shape_Cone'"));
+	// NUEVA MALLA SUBTERRÁNEA: SM_Box_8
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/SciFi_Props/Models/SM_Box_8.SM_Box_8'"));
 	if (MeshAsset.Succeeded())
 	{
 		mallaPlataforma->SetStaticMesh(MeshAsset.Object);
-		mallaPlataforma->SetWorldScale3D(FVector(1.0f, 1.0f, 0.5f));
+		mallaPlataforma->SetWorldScale3D(FVector(1.0f, 1.0f, 0.5f)); // Ajusta la escala si es necesario
 	}
 
 	// Movimiento: solo sube y baja

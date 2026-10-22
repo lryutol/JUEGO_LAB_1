@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
@@ -13,11 +13,11 @@ enum class ETipoEnemigo
 	ENEMIGO_AEREO
 };
 
-// Estructura con todos los datos para configurar un enemigo
 struct FConfigEnemigo
 {
 	ETipoEnemigo Tipo = ETipoEnemigo::ENEMIGO_TERRESTRE;
 	FString MallaRuta = TEXT("");
+	FString RutaMaterial = TEXT("");
 	FVector Escala = FVector(1.0f, 1.0f, 1.0f);
 	float Vida = 100.0f;
 	FVector Ejes = FVector(1.0f, 1.0f, 0.0f);
@@ -35,10 +35,8 @@ public:
 	AEnemigo();
 
 	ETipoEnemigo tipoEnemigo;
-
 	UStaticMeshComponent* mallaEnemigo;
 
-	// Método que configura el enemigo según los datos recibidos
 	void Configurar(const FConfigEnemigo& Config);
 
 protected:

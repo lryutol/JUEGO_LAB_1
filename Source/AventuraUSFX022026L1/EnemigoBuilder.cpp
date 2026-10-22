@@ -1,20 +1,25 @@
-#include "EnemigoBuilder.h"
+ï»¿#include "EnemigoBuilder.h"
 
 FEnemigoBuilder::FEnemigoBuilder()
 {
-    // Valores por defecto por si no se configuran
     Config = FConfigEnemigo();
 }
 
 FEnemigoBuilder& FEnemigoBuilder::SetTipo(ETipoEnemigo Tipo)
 {
     Config.Tipo = Tipo;
-    return *this; // Devuelve el propio builder para encadenar
+    return *this;
 }
 
 FEnemigoBuilder& FEnemigoBuilder::SetMalla(const FString& RutaMalla)
 {
     Config.MallaRuta = RutaMalla;
+    return *this;
+}
+
+FEnemigoBuilder& FEnemigoBuilder::SetMaterial(const FString& RutaMaterial)
+{
+    Config.RutaMaterial = RutaMaterial;
     return *this;
 }
 
@@ -43,11 +48,9 @@ AEnemigo* FEnemigoBuilder::Construir(UWorld* World, FVector Location, FRotator R
 {
     if (!World) return nullptr;
 
-    // Spawnea el enemigo base
     AEnemigo* Nuevo = World->SpawnActor<AEnemigo>(Location, Rotation);
     if (Nuevo)
     {
-        // Le aplica toda la configuración acumulada
         Nuevo->Configurar(Config);
     }
     return Nuevo;

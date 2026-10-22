@@ -1,4 +1,4 @@
-#include "PlataformaTerrestre.h"
+﻿#include "PlataformaTerrestre.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
@@ -7,12 +7,12 @@ APlataformaTerrestre::APlataformaTerrestre()
 {
 	tipoPlataforma = ETipoPlataforma::PLATAFORMA_TERRESTRE;
 
-	// Malla TERRESTRE: cubo (bloque de tierra)
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Cube.Shape_Cube'"));
+	// MALLA TERRESTRE: SM_Box_7
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/SciFi_Props/Models/SM_Box_7.SM_Box_7'"));
 	if (MeshAsset.Succeeded())
 	{
 		mallaPlataforma->SetStaticMesh(MeshAsset.Object);
-		mallaPlataforma->SetWorldScale3D(FVector(2.0f, 2.0f, 0.3f));
+		mallaPlataforma->SetWorldScale3D(FVector(2.0f, 2.0f, 0.3f)); // Ajusta la escala si es necesario
 	}
 
 	// Movimiento: lento, solo en el plano X/Y

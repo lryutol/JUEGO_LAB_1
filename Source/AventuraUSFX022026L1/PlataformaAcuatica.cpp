@@ -7,12 +7,12 @@ APlataformaAcuatica::APlataformaAcuatica()
 {
 	tipoPlataforma = ETipoPlataforma::PLATAFORMA_ACUATICA;
 
-	// Malla ACUÁTICA: cilindro (balsa flotante)
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Cylinder.Shape_Cylinder'"));
+	// NUEVA MALLA ACUÁTICA: SM_Box_3
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("StaticMesh'/Game/SciFi_Props/Models/SM_Box_3.SM_Box_3'"));
 	if (MeshAsset.Succeeded())
 	{
 		mallaPlataforma->SetStaticMesh(MeshAsset.Object);
-		mallaPlataforma->SetWorldScale3D(FVector(2.0f, 2.0f, 0.2f));
+		mallaPlataforma->SetWorldScale3D(FVector(2.0f, 2.0f, 0.2f)); // Ajusta la escala si es necesario
 	}
 
 	// Movimiento: muy lento, flotando
