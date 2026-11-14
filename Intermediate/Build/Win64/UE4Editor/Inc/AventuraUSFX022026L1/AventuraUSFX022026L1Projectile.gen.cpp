@@ -21,8 +21,9 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1Projectile() {}
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
-	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UProjectileMovementComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(AAventuraUSFX022026L1Projectile::execOnHit)
 	{
@@ -103,12 +104,10 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1Projectile() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit_Statics::Function_MetaDataParams[] = {
-		{ "Comment", "/** Function to handle the projectile hitting something */" },
 		{ "ModuleRelativePath", "AventuraUSFX022026L1Projectile.h" },
-		{ "ToolTip", "Function to handle the projectile hitting something" },
 	};
 #endif
-	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AAventuraUSFX022026L1Projectile, nullptr, "OnHit", nullptr, nullptr, sizeof(AventuraUSFX022026L1Projectile_eventOnHit_Parms), Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00C20401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit_Statics::Function_MetaDataParams)) };
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AAventuraUSFX022026L1Projectile, nullptr, "OnHit", nullptr, nullptr, sizeof(AventuraUSFX022026L1Projectile_eventOnHit_Parms), Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00C80401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -130,13 +129,21 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1Projectile() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ProjectileMesh_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DanioProyectil_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ProjectileMesh;
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_DanioProyectil;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CollisionComponent_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_CollisionComponent;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ProjectileMovement_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ProjectileMovement;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MeshComponent_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_MeshComponent;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -146,7 +153,7 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1Projectile() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_AventuraUSFX022026L1,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit, "OnHit" }, // 3041258831
+		{ &Z_Construct_UFunction_AAventuraUSFX022026L1Projectile_OnHit, "OnHit" }, // 1473886509
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::Class_MetaDataParams[] = {
@@ -155,37 +162,48 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1Projectile() {}
 	};
 #endif
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMesh_MetaData[] = {
-		{ "AllowPrivateAccess", "true" },
-		{ "Category", "Projectile" },
-		{ "Comment", "/** Sphere collision component */" },
-		{ "EditInline", "true" },
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_DanioProyectil_MetaData[] = {
+		{ "Category", "Combate" },
 		{ "ModuleRelativePath", "AventuraUSFX022026L1Projectile.h" },
-		{ "ToolTip", "Sphere collision component" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMesh = { "ProjectileMesh", nullptr, (EPropertyFlags)0x00400000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAventuraUSFX022026L1Projectile, ProjectileMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMesh_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_DanioProyectil = { "DanioProyectil", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAventuraUSFX022026L1Projectile, DanioProyectil), METADATA_PARAMS(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_DanioProyectil_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_DanioProyectil_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_CollisionComponent_MetaData[] = {
+		{ "Category", "Componentes" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "AventuraUSFX022026L1Projectile.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_CollisionComponent = { "CollisionComponent", nullptr, (EPropertyFlags)0x00400000000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAventuraUSFX022026L1Projectile, CollisionComponent), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_CollisionComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_CollisionComponent_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMovement_MetaData[] = {
-		{ "AllowPrivateAccess", "true" },
-		{ "Category", "Movement" },
-		{ "Comment", "/** Projectile movement component */" },
+		{ "Category", "Componentes" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "AventuraUSFX022026L1Projectile.h" },
-		{ "ToolTip", "Projectile movement component" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMovement = { "ProjectileMovement", nullptr, (EPropertyFlags)0x00400000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAventuraUSFX022026L1Projectile, ProjectileMovement), Z_Construct_UClass_UProjectileMovementComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMovement_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMovement_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMovement = { "ProjectileMovement", nullptr, (EPropertyFlags)0x00400000000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAventuraUSFX022026L1Projectile, ProjectileMovement), Z_Construct_UClass_UProjectileMovementComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMovement_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMovement_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_MeshComponent_MetaData[] = {
+		{ "Category", "Componentes" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "AventuraUSFX022026L1Projectile.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_MeshComponent = { "MeshComponent", nullptr, (EPropertyFlags)0x00400000000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAventuraUSFX022026L1Projectile, MeshComponent), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_MeshComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_MeshComponent_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMesh,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_DanioProyectil,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_CollisionComponent,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_ProjectileMovement,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::NewProp_MeshComponent,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AAventuraUSFX022026L1Projectile>::IsAbstract,
 	};
 	const UE4CodeGen_Private::FClassParams Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::ClassParams = {
 		&AAventuraUSFX022026L1Projectile::StaticClass,
-		"Game",
+		"Engine",
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		FuncInfo,
@@ -195,7 +213,7 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1Projectile() {}
 		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::PropPointers),
 		0,
-		0x008000A4u,
+		0x009000A4u,
 		METADATA_PARAMS(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_AAventuraUSFX022026L1Projectile_Statics::Class_MetaDataParams))
 	};
 	UClass* Z_Construct_UClass_AAventuraUSFX022026L1Projectile()
@@ -207,7 +225,7 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1Projectile() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AAventuraUSFX022026L1Projectile, 3048145582);
+	IMPLEMENT_CLASS(AAventuraUSFX022026L1Projectile, 516819711);
 	template<> AVENTURAUSFX022026L1_API UClass* StaticClass<AAventuraUSFX022026L1Projectile>()
 	{
 		return AAventuraUSFX022026L1Projectile::StaticClass();

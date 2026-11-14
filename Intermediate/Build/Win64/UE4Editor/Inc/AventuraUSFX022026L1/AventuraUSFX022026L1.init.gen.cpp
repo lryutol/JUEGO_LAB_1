@@ -11,18 +11,26 @@
 #endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1_init() {}
+	AVENTURAUSFX022026L1_API UFunction* Z_Construct_UDelegateFunction_AventuraUSFX022026L1_OnAlertaTorreta__DelegateSignature();
+	AVENTURAUSFX022026L1_API UFunction* Z_Construct_UDelegateFunction_AventuraUSFX022026L1_OnPeligroFinalizado__DelegateSignature();
+	AVENTURAUSFX022026L1_API UFunction* Z_Construct_UDelegateFunction_AventuraUSFX022026L1_OnTorretaDestruida__DelegateSignature();
 	UPackage* Z_Construct_UPackage__Script_AventuraUSFX022026L1()
 	{
 		static UPackage* ReturnPackage = nullptr;
 		if (!ReturnPackage)
 		{
+			static UObject* (*const SingletonFuncArray[])() = {
+				(UObject* (*)())Z_Construct_UDelegateFunction_AventuraUSFX022026L1_OnAlertaTorreta__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_AventuraUSFX022026L1_OnPeligroFinalizado__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_AventuraUSFX022026L1_OnTorretaDestruida__DelegateSignature,
+			};
 			static const UE4CodeGen_Private::FPackageParams PackageParams = {
 				"/Script/AventuraUSFX022026L1",
-				nullptr,
-				0,
+				SingletonFuncArray,
+				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x41C6F0D7,
-				0xEB43EA24,
+				0x259E7FB3,
+				0x669153F4,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UE4CodeGen_Private::ConstructUPackage(ReturnPackage, PackageParams);

@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodePlataformaAerea() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlataformaAerea, 3902647266);
+	IMPLEMENT_CLASS(APlataformaAerea, 3492428000);
 	template<> AVENTURAUSFX022026L1_API UClass* StaticClass<APlataformaAerea>()
 	{
 		return APlataformaAerea::StaticClass();

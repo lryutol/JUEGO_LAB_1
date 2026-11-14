@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1GameMode() {}
 	AVENTURAUSFX022026L1_API UClass* Z_Construct_UClass_AAventuraUSFX022026L1GameMode();
 	ENGINE_API UClass* Z_Construct_UClass_AGameModeBase();
 	UPackage* Z_Construct_UPackage__Script_AventuraUSFX022026L1();
+	AVENTURAUSFX022026L1_API UClass* Z_Construct_UClass_AFachadaJuego_NoRegister();
 // End Cross Module References
 	void AAventuraUSFX022026L1GameMode::StaticRegisterNativesAAventuraUSFX022026L1GameMode()
 	{
@@ -31,6 +32,11 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1GameMode() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MiFachada_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_MiFachada;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -46,6 +52,15 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1GameMode() {}
 		{ "ShowCategories", "Input|MouseInput Input|TouchInput" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAventuraUSFX022026L1GameMode_Statics::NewProp_MiFachada_MetaData[] = {
+		{ "ModuleRelativePath", "AventuraUSFX022026L1GameMode.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAventuraUSFX022026L1GameMode_Statics::NewProp_MiFachada = { "MiFachada", nullptr, (EPropertyFlags)0x0040000000000000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAventuraUSFX022026L1GameMode, MiFachada), Z_Construct_UClass_AFachadaJuego_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAventuraUSFX022026L1GameMode_Statics::NewProp_MiFachada_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAventuraUSFX022026L1GameMode_Statics::NewProp_MiFachada_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAventuraUSFX022026L1GameMode_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAventuraUSFX022026L1GameMode_Statics::NewProp_MiFachada,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AAventuraUSFX022026L1GameMode_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AAventuraUSFX022026L1GameMode>::IsAbstract,
 	};
@@ -55,11 +70,11 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1GameMode() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_AAventuraUSFX022026L1GameMode_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		UE_ARRAY_COUNT(Z_Construct_UClass_AAventuraUSFX022026L1GameMode_Statics::PropPointers),
 		0,
 		0x008802ACu,
 		METADATA_PARAMS(Z_Construct_UClass_AAventuraUSFX022026L1GameMode_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_AAventuraUSFX022026L1GameMode_Statics::Class_MetaDataParams))
@@ -73,7 +88,7 @@ void EmptyLinkFunctionForGeneratedCodeAventuraUSFX022026L1GameMode() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AAventuraUSFX022026L1GameMode, 542520662);
+	IMPLEMENT_CLASS(AAventuraUSFX022026L1GameMode, 1095239037);
 	template<> AVENTURAUSFX022026L1_API UClass* StaticClass<AAventuraUSFX022026L1GameMode>()
 	{
 		return AAventuraUSFX022026L1GameMode::StaticClass();

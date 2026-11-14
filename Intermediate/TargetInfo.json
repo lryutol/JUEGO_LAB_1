@@ -2,12 +2,12 @@
 	"Targets": [
 		{
 			"Name": "AventuraUSFX022026L1",
-			"Path": "C:\\avanzada\\fact\\AventuraUSFX022026L1\\Source\\AventuraUSFX022026L1.Target.cs",
+			"Path": "C:\\avanzada\\lab1\\JUEGO_LAB_1\\Source\\AventuraUSFX022026L1.Target.cs",
 			"Type": "Game"
 		},
 		{
 			"Name": "AventuraUSFX022026L1Editor",
-			"Path": "C:\\avanzada\\fact\\AventuraUSFX022026L1\\Source\\AventuraUSFX022026L1Editor.Target.cs",
+			"Path": "C:\\avanzada\\lab1\\JUEGO_LAB_1\\Source\\AventuraUSFX022026L1Editor.Target.cs",
 			"Type": "Editor"
 		}
 	]

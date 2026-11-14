@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodePlataformaTerrestre() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlataformaTerrestre, 3372357477);
+	IMPLEMENT_CLASS(APlataformaTerrestre, 1135925489);
 	template<> AVENTURAUSFX022026L1_API UClass* StaticClass<APlataformaTerrestre>()
 	{
 		return APlataformaTerrestre::StaticClass();

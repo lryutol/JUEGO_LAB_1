@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodePlataformaSubterranea() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlataformaSubterranea, 1569466476);
+	IMPLEMENT_CLASS(APlataformaSubterranea, 3049136626);
 	template<> AVENTURAUSFX022026L1_API UClass* StaticClass<APlataformaSubterranea>()
 	{
 		return APlataformaSubterranea::StaticClass();

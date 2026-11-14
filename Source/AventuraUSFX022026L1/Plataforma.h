@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -26,6 +24,7 @@ public:
 
 	ETipoPlataforma tipoPlataforma;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Componentes")
 	UStaticMeshComponent* mallaPlataforma;
 
 protected:
@@ -34,10 +33,10 @@ protected:
 public:
 	virtual void Tick(float DeltaTime) override;
 
-	FVector movimientoEjes = FVector(0.0f, 0.0f, 0.0f);
-	FVector movimientoLimitesMaximos = FVector(0.0f, 0.0f, 0.0f);
-	FVector movimientoLimitesMinimos = FVector(0.0f, 0.0f, 0.0f);
-	FVector movimientoVelocidades = FVector(0.0f, 0.0f, 0.0f);
-	FVector movimientoDireccion = FVector(0.0f, 0.0f, 0.0f);
-	FVector posicionActual = FVector(0.0f, 0.0f, 0.0f);
+	// Variables para el nuevo movimiento ordenado (Senoidal)
+	FVector UbicacionInicial;
+	float TiempoPlataforma;
+	float VelocidadAscensor;
+	float AmplitudAscensor;
+	bool bEsHorizontal;
 };

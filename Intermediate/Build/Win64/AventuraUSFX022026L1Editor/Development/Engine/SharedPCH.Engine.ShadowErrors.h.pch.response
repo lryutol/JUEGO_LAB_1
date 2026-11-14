@@ -260,11 +260,11 @@
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\winrt"
-/I C:\avanzada\fact\AventuraUSFX022026L1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine
-/Yc"C:\avanzada\fact\AventuraUSFX022026L1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Fp"C:\avanzada\fact\AventuraUSFX022026L1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-"C:\avanzada\fact\AventuraUSFX022026L1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.cpp"
-/Fo"C:\avanzada\fact\AventuraUSFX022026L1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+/I C:\avanzada\lab1\JUEGO_LAB_1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine
+/Yc"C:\avanzada\lab1\JUEGO_LAB_1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"C:\avanzada\lab1\JUEGO_LAB_1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+"C:\avanzada\lab1\JUEGO_LAB_1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.cpp"
+/Fo"C:\avanzada\lab1\JUEGO_LAB_1\Intermediate\Build\Win64\AventuraUSFX022026L1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
 /TP
 /GR-
 /W4

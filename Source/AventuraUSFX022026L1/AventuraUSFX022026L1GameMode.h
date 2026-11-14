@@ -1,14 +1,10 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "AventuraUSFX022026L1GameMode.generated.h"
 
-class APlataforma;
-class AEnemigo;
-class AInventory;
+class AFachadaJuego;
 
 UCLASS(MinimalAPI)
 class AAventuraUSFX022026L1GameMode : public AGameModeBase
@@ -21,21 +17,16 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-private:
-	AInventory* Inventory;
-
 public:
 	virtual void Tick(float DeltaTime) override;
 
-	// Plataformas
-	TArray<APlataforma*> aPlataformas;
-	FTimerHandle TimerEliminarPlataforma;
-	void EliminarPlataforma();
-	int tipoPlataformaActual;
+private:
+	UPROPERTY()
+	AFachadaJuego* MiFachada;
 
-	// Enemigos
-	TArray<AEnemigo*> aEnemigos;
+	FTimerHandle TimerEliminarPlataforma;
 	FTimerHandle TimerEliminarEnemigo;
+
+	void EliminarPlataforma();
 	void EliminarEnemigo();
-	int tipoEnemigoActual;
 };

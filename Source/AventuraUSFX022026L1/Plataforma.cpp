@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "Plataforma.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Components/StaticMeshComponent.h"
@@ -8,50 +6,50 @@
 APlataforma::APlataforma()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
 	tipoPlataforma = ETipoPlataforma::PLATAFORMA_TERRESTRE;
 
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> PlataformaMeshAsset(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Plane.Shape_Plane'"));
 
 	mallaPlataforma = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MallaPlataforma"));
-	mallaPlataforma->SetStaticMesh(PlataformaMeshAsset.Object);
+	if (PlataformaMeshAsset.Succeeded())
+	{
+		mallaPlataforma->SetStaticMesh(PlataformaMeshAsset.Object);
+	}
 	mallaPlataforma->SetupAttachment(RootComponent);
-
 	RootComponent = mallaPlataforma;
 
-	movimientoEjes = FVector(0.0f, 0.0f, 0.0f);
-	movimientoLimitesMaximos = FVector(800.0f, 800.0f, 800.0f);
-	movimientoLimitesMinimos = FVector(-800.0f, -800.0f, -800.0f);
-	movimientoVelocidades = FVector(0.0f, 0.0f, 0.0f);
-	movimientoDireccion = FVector(1.0f, 1.0f, 1.0f);
+	// Valores por defecto
+	VelocidadAscensor = 1.0f;
+	AmplitudAscensor = 200.0f;
+	bEsHorizontal = false;
 }
 
 void APlataforma::BeginPlay()
 {
 	Super::BeginPlay();
+	UbicacionInicial = GetActorLocation();
+	// Desfase aleatorio para que no se muevan todas al mismo tiempo
+	TiempoPlataforma = FMath::RandRange(0.0f, 10.0f);
 }
 
 void APlataforma::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	posicionActual = GetActorLocation();
+	TiempoPlataforma += DeltaTime * VelocidadAscensor;
 
-	// Si toca los límites, invierte la dirección de ese eje
-	if (posicionActual.X >= movimientoLimitesMaximos.X || posicionActual.X <= movimientoLimitesMinimos.X) {
-		movimientoDireccion.X *= -1.0f;
+	// El movimiento Senoidal da ese efecto suave de "ascensor" o vaivén
+	float Offset = FMath::Sin(TiempoPlataforma) * AmplitudAscensor;
+
+	FVector NuevaPos = UbicacionInicial;
+	if (bEsHorizontal)
+	{
+		NuevaPos.Y += Offset; // Movimiento en el eje Y (o cambia a X)
+	}
+	else
+	{
+		NuevaPos.Z += Offset; // Movimiento vertical
 	}
 
-	if (posicionActual.Y >= movimientoLimitesMaximos.Y || posicionActual.Y <= movimientoLimitesMinimos.Y) {
-		movimientoDireccion.Y *= -1.0f;
-	}
-
-	if (posicionActual.Z >= movimientoLimitesMaximos.Z || posicionActual.Z <= movimientoLimitesMinimos.Z) {
-		movimientoDireccion.Z *= -1.0f;
-	}
-
-	// Aplicamos el movimiento respetando los ejes habilitados de cada tipo
-	FVector desplazamiento = movimientoDireccion * movimientoVelocidades * movimientoEjes * DeltaTime;
-	FVector posicionNueva = posicionActual + desplazamiento;
-	SetActorLocation(posicionNueva);
+	SetActorLocation(NuevaPos);
 }

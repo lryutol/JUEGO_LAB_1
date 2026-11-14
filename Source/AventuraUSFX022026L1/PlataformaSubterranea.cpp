@@ -12,13 +12,11 @@ APlataformaSubterranea::APlataformaSubterranea()
 	if (MeshAsset.Succeeded())
 	{
 		mallaPlataforma->SetStaticMesh(MeshAsset.Object);
-		mallaPlataforma->SetWorldScale3D(FVector(1.0f, 1.0f, 0.5f)); // Ajusta la escala si es necesario
+		mallaPlataforma->SetWorldScale3D(FVector(1.0f, 1.0f, 0.5f));
 	}
 
-	// Movimiento: solo sube y baja
-	movimientoEjes = FVector(0.0f, 0.0f, 1.0f);
-	movimientoLimitesMaximos = FVector(0.0f, 0.0f, 1000.0f);
-	movimientoLimitesMinimos = FVector(0.0f, 0.0f, 100.0f);
-	movimientoVelocidades = FVector(0.0f, 0.0f, 60.0f);
-	movimientoDireccion = FVector(0.0f, 0.0f, FMath::RandBool() ? 1.0f : -1.0f);
+	// Movimiento: Solo sube y baja (vertical)
+	VelocidadAscensor = 1.5f;
+	AmplitudAscensor = 500.0f;
+	bEsHorizontal = false;
 }

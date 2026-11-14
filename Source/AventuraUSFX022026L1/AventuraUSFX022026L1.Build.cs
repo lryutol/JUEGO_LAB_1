@@ -4,10 +4,11 @@ using UnrealBuildTool;
 
 public class AventuraUSFX022026L1 : ModuleRules
 {
-	public AventuraUSFX022026L1(ReadOnlyTargetRules Target) : base(Target)
-	{
-		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+    public AventuraUSFX022026L1(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
-	}
+        // FÍJATE QUE AHORA AGREGUÉ "AIModule" AL FINAL
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "NavigationSystem", "AIModule" });
+    }
 }

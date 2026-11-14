@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodePlataformaAcuatica() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlataformaAcuatica, 2190876625);
+	IMPLEMENT_CLASS(APlataformaAcuatica, 149043317);
 	template<> AVENTURAUSFX022026L1_API UClass* StaticClass<APlataformaAcuatica>()
 	{
 		return APlataformaAcuatica::StaticClass();

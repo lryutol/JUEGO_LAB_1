@@ -12,17 +12,11 @@ APlataformaAcuatica::APlataformaAcuatica()
 	if (MeshAsset.Succeeded())
 	{
 		mallaPlataforma->SetStaticMesh(MeshAsset.Object);
-		mallaPlataforma->SetWorldScale3D(FVector(2.0f, 2.0f, 0.2f)); // Ajusta la escala si es necesario
+		mallaPlataforma->SetWorldScale3D(FVector(2.0f, 2.0f, 0.2f));
 	}
 
-	// Movimiento: muy lento, flotando
-	movimientoEjes = FVector(1.0f, 1.0f, 1.0f);
-	movimientoLimitesMaximos = FVector(1200.0f, 1200.0f, 600.0f);
-	movimientoLimitesMinimos = FVector(-1200.0f, -1200.0f, 300.0f);
-	movimientoVelocidades = FVector(40.0f, 40.0f, 15.0f);
-	movimientoDireccion = FVector(
-		FMath::RandBool() ? 1.0f : -1.0f,
-		FMath::RandBool() ? 1.0f : -1.0f,
-		FMath::RandBool() ? 1.0f : -1.0f
-	);
+	// Movimiento: Muy lento, flotando (vertical)
+	VelocidadAscensor = 0.5f;
+	AmplitudAscensor = 150.0f;
+	bEsHorizontal = false;
 }

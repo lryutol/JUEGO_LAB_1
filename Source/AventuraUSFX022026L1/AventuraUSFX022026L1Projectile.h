@@ -1,37 +1,38 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "AventuraUSFX022026L1Projectile.generated.h"
 
-class UProjectileMovementComponent;
-class UStaticMeshComponent;
-
-UCLASS(config=Game)
-class AAventuraUSFX022026L1Projectile : public AActor
+UCLASS()
+class AVENTURAUSFX022026L1_API AAventuraUSFX022026L1Projectile : public AActor
 {
 	GENERATED_BODY()
-
-	/** Sphere collision component */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Projectile, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* ProjectileMesh;
-
-	/** Projectile movement component */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
-	UProjectileMovementComponent* ProjectileMovement;
 
 public:
 	AAventuraUSFX022026L1Projectile();
 
-	/** Function to handle the projectile hitting something */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combate")
+	float DanioProyectil = 20.0f;
+
+	void SetVelocidad(float NuevaVelocidad);
+
+	// NUEVA FUNCIÓN: Para que el proyectil ignore a un actor (el Jefe)
+	void IgnorarActor(AActor* ActorParaIgnorar);
+
+protected:
+	virtual void BeginPlay() override;
+
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
-	/** Returns ProjectileMesh subobject **/
-	FORCEINLINE UStaticMeshComponent* GetProjectileMesh() const { return ProjectileMesh; }
-	/** Returns ProjectileMovement subobject **/
-	FORCEINLINE UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
-};
+private:
+	UPROPERTY(VisibleAnywhere, Category = "Componentes")
+	class USphereComponent* CollisionComponent;
 
+	UPROPERTY(VisibleAnywhere, Category = "Componentes")
+	class UProjectileMovementComponent* ProjectileMovement;
+
+	UPROPERTY(VisibleAnywhere, Category = "Componentes")
+	class UStaticMeshComponent* MeshComponent;
+};

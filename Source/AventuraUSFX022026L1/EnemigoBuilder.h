@@ -1,5 +1,4 @@
 ﻿#pragma once
-
 #include "CoreMinimal.h"
 #include "Enemigo.h"
 
@@ -10,13 +9,12 @@ private:
 
 public:
     FEnemigoBuilder();
-
     FEnemigoBuilder& SetTipo(ETipoEnemigo Tipo);
     FEnemigoBuilder& SetMalla(const FString& RutaMalla);
     FEnemigoBuilder& SetMaterial(const FString& RutaMaterial);
     FEnemigoBuilder& SetEscala(float X, float Y, float Z);
     FEnemigoBuilder& SetVida(float Vida);
-    FEnemigoBuilder& SetMovimiento(FVector Ejes, FVector Velocidad, FVector LimitesMin, FVector LimitesMax);
-
+    FEnemigoBuilder& SetPatron(EPatronMovimiento Patron, FVector Centro, float Velocidad = 300.0f, float RangoDet = 1500.0f, float RangoAtq = 1000.0f);
+    FEnemigoBuilder& SetFormacion(int32 Indice, int32 Total);
     AEnemigo* Construir(UWorld* World, FVector Location, FRotator Rotation);
 };

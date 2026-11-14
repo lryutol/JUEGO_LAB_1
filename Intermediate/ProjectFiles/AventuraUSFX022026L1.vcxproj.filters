@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\AventuraUSFX022026L1.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{C43D0B54-DE3D-43A2-B9B9-4292048724FD}</UniqueIdentifier>
+      <UniqueIdentifier>{EF6BD397-1619-4E32-907C-2A855EC293AD}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\AventuraUSFX022026L1.Target.cs">
       <Filter>Source</Filter>
@@ -15,7 +15,7 @@
     <None Include="..\..\.gitignore" />
     <None Include="..\..\Temp.txt" />
     <Filter Include="Config">
-      <UniqueIdentifier>{92503437-2B79-46D3-9A25-F9B5CB784B55}</UniqueIdentifier>
+      <UniqueIdentifier>{BE4361AC-F728-418A-8E22-32CDFCE7C364}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -33,7 +33,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\AventuraUSFX022026L1">
-      <UniqueIdentifier>{56B8CD3B-41BA-4A0C-A8BF-362E2F0B70E6}</UniqueIdentifier>
+      <UniqueIdentifier>{5A863FF2-A089-44E9-8F59-E138E28406FF}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\AventuraUSFX022026L1\AventuraUSFX022026L1.Build.cs">
       <Filter>Source\AventuraUSFX022026L1</Filter>
@@ -122,6 +122,12 @@
     <ClInclude Include="..\..\Source\AventuraUSFX022026L1\FabricaTerrestre.h">
       <Filter>Source\AventuraUSFX022026L1</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\AventuraUSFX022026L1\FachadaJuego.cpp">
+      <Filter>Source\AventuraUSFX022026L1</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\AventuraUSFX022026L1\FachadaJuego.h">
+      <Filter>Source\AventuraUSFX022026L1</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\AventuraUSFX022026L1\Inventory.cpp">
       <Filter>Source\AventuraUSFX022026L1</Filter>
     </ClCompile>
@@ -182,5 +188,33 @@
     <ClInclude Include="..\..\Source\AventuraUSFX022026L1\Puertas.h">
       <Filter>Source\AventuraUSFX022026L1</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\AventuraUSFX022026L1\Torreta.cpp">
+      <Filter>Source\AventuraUSFX022026L1</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\AventuraUSFX022026L1\Torreta.h">
+      <Filter>Source\AventuraUSFX022026L1</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\AventuraUSFX022026L1\EstrategiaAtaque.h">
+      <Filter>Source\AventuraUSFX022026L1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\AventuraUSFX022026L1\EstrategiaFactory.h">
+      <Filter>Source\AventuraUSFX022026L1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\AventuraUSFX022026L1\Jefe.h">
+      <Filter>Source\AventuraUSFX022026L1</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\AventuraUSFX022026L1\EstrategiaAtaque.cpp">
+      <Filter>Source\AventuraUSFX022026L1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\AventuraUSFX022026L1\EstrategiaFactory.cpp">
+      <Filter>Source\AventuraUSFX022026L1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\AventuraUSFX022026L1\Jefe.cpp">
+      <Filter>Source\AventuraUSFX022026L1</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ class AVENTURAUSFX022026L1_API AFabricaEnemigosTecnologicos : public AFabricaEne
 	GENERATED_BODY()
 
 public:
-	virtual AEnemigo* CrearEnemigoAereo(FVector Location, FRotator Rotation) override;
+	virtual AEnemigo* CrearEnemigoAereo(FVector Location, FRotator Rotation, int32 Index, int32 Total) override;
 	virtual AEnemigo* CrearEnemigoAcuatico(FVector Location, FRotator Rotation) override;
 	virtual AEnemigo* CrearEnemigoTerrestre(FVector Location, FRotator Rotation) override;
 };
