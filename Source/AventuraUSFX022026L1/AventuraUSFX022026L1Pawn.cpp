@@ -44,7 +44,7 @@ AAventuraUSFX022026L1Pawn::AAventuraUSFX022026L1Pawn()
 	CameraComponent->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	CameraComponent->bUsePawnControlRotation = false;
 
-	MoveSpeed = 2000.0f;
+	MoveSpeed = 1500.0f;
 	GunOffset = FVector(150.f, 0.f, 0.f);
 	FireRate = 0.15f;
 	bCanFire = true;

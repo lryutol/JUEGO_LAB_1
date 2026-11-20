@@ -8,7 +8,9 @@
 #include "FabricaAcuatica.h"
 #include "FabricaSubterranea.h"
 #include "Torreta.h"
-#include "Jefe.h"
+#include "DirectorNaveNodriza.h"
+#include "NaveNodrizaBuilder.h"
+#include "NaveNodriza.h"
 #include "Engine/StaticMesh.h" 
 
 AFachadaJuego::AFachadaJuego()
@@ -31,30 +33,25 @@ void AFachadaJuego::InicializarMundo(int32 DronesTechPorEsquina, int32 DronesNat
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("FACHADA ACTIVA: DronesTech: %d, Tanques: %d grupos"), DronesTechPorEsquina, NumGruposTanques));
 	}
 
-	// --- 0. TORRETAS (Solamente 2) ---
+	// --- 0. TORRETAS ---
 	World->SpawnActor<ATorreta>(ATorreta::StaticClass(), FVector(1500.0f, 1500.0f, 250.0f), FRotator::ZeroRotator);
 	World->SpawnActor<ATorreta>(ATorreta::StaticClass(), FVector(-1500.0f, -1500.0f, 250.0f), FRotator::ZeroRotator);
 
-	// --- SPAWN DEL JEFE ---
-	AJefe* JefeFinal = World->SpawnActor<AJefe>(AJefe::StaticClass(), FVector(0.0f, 0.0f, 1000.0f), FRotator::ZeroRotator);
-	if (JefeFinal)
-	{
-		JefeFinal->vidaMaxima = 2000.0f;
-		JefeFinal->vidaActual = 2000.0f;
-		JefeFinal->VelocidadMovimiento = 400.0f;
+	// --- 1. CREACIÓN DEL JEFE FINAL (NAVE NODRIZA) ---
+	// Usamos la clase F directamente (sin NewObject)
+	FNaveNodrizaBuilder BuilderNave;
+	ANaveNodriza* NaveJefe = FDirectorNaveNodriza::ConstruirNaveDeAsalto(BuilderNave, GetWorld(), FVector(0.0f, 0.0f, 1500.0f), FRotator::ZeroRotator);
 
-		// CARGAMOS EL MODELO DEL JEFE
-		UStaticMesh* JefeMesh = LoadObject<UStaticMesh>(nullptr, TEXT("StaticMesh'/Game/StarSparrow/Meshes/Examples/SM_StarSparrow24.SM_StarSparrow24'"));
-		if (JefeMesh && JefeFinal->mallaEnemigo)
-		{
-			JefeFinal->mallaEnemigo->SetStaticMesh(JefeMesh);
-			// ESCALA AJUSTADA: 1.0f para que sea ligeramente más grande que el dron (0.5f)
-			JefeFinal->mallaEnemigo->SetWorldScale3D(FVector(1.0f, 1.0f, 1.0f));
-			JefeFinal->mallaEnemigo->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
-		}
+	if (NaveJefe)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Fachada: Nave Nodriza ensamblada con éxito."));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Fachada: Falló la creación de la Nave Nodriza."));
 	}
 
-	// --- 1. PLATAFORMAS ---
+	// --- 2. PLATAFORMAS ---
 	TArray<AFabricaPlataformas*> FabricasPlat;
 	FabricasPlat.Add(World->SpawnActor<AFabricaTerrestre>());
 	FabricasPlat.Add(World->SpawnActor<AFabricaAerea>());
@@ -74,11 +71,11 @@ void AFachadaJuego::InicializarMundo(int32 DronesTechPorEsquina, int32 DronesNat
 		}
 	}
 
-	// --- 2. FÁBRICAS DE ENEMIGOS ---
+	// --- 3. FÁBRICAS DE ENEMIGOS NORMALES ---
 	AFabricaEnemigos* FabricaTech = World->SpawnActor<AFabricaEnemigosTecnologicos>();
 	AFabricaEnemigos* FabricaNat = World->SpawnActor<AFabricaEnemigosNaturales>();
 
-	// --- 3. DRONES TECNOLÓGICOS ---
+	// --- 4. DRONES TECNOLÓGICOS ---
 	if (FabricaTech && DronesTechPorEsquina > 0)
 	{
 		for (int i = 0; i < DronesTechPorEsquina; i++)
@@ -88,7 +85,7 @@ void AFachadaJuego::InicializarMundo(int32 DronesTechPorEsquina, int32 DronesNat
 		}
 	}
 
-	// --- 4. DRONES Y ACUÁTICOS NATURALES ---
+	// --- 5. DRONES Y ACUÁTICOS NATURALES ---
 	if (FabricaNat)
 	{
 		if (DronesNatPorEsquina > 0)
@@ -110,7 +107,7 @@ void AFachadaJuego::InicializarMundo(int32 DronesTechPorEsquina, int32 DronesNat
 		}
 	}
 
-	// --- 5. TANQUES TECNOLÓGICOS ---
+	// --- 6. TANQUES TECNOLÓGICOS ---
 	if (FabricaTech && NumGruposTanques > 0)
 	{
 		TArray<FVector> PosicionesBaseTanques;
@@ -123,7 +120,6 @@ void AFachadaJuego::InicializarMundo(int32 DronesTechPorEsquina, int32 DronesNat
 		for (int grupo = 0; grupo < NumGruposTanques; grupo++)
 		{
 			FVector Base = PosicionesBaseTanques[grupo % PosicionesBaseTanques.Num()];
-
 			for (int x = -1; x <= 1; x++)
 			{
 				for (int y = -1; y <= 1; y++)
@@ -135,7 +131,7 @@ void AFachadaJuego::InicializarMundo(int32 DronesTechPorEsquina, int32 DronesNat
 		}
 	}
 
-	// --- 6. LOBOS NATURALES ---
+	// --- 7. LOBOS NATURALES ---
 	if (FabricaNat && NumGruposLobos > 0)
 	{
 		TArray<FVector> PosicionesBaseLobos;
@@ -147,7 +143,6 @@ void AFachadaJuego::InicializarMundo(int32 DronesTechPorEsquina, int32 DronesNat
 		for (int grupo = 0; grupo < NumGruposLobos; grupo++)
 		{
 			FVector Base = PosicionesBaseLobos[grupo % PosicionesBaseLobos.Num()];
-
 			for (int x = -1; x <= 1; x++)
 			{
 				for (int y = -1; y <= 1; y++)
