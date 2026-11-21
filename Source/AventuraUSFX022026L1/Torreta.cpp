@@ -9,17 +9,17 @@ ATorreta::ATorreta()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> TorretaMesh(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Cylinder.Shape_Cylinder'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> TorretaMesh(TEXT("StaticMesh'/Game/modelos/torreta/TurretScifi_Sketchfab.TurretScifi_Sketchfab'"));
 	MallaTorreta = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MallaTorreta"));
 	RootComponent = MallaTorreta;
 	if (TorretaMesh.Succeeded()) MallaTorreta->SetStaticMesh(TorretaMesh.Object);
-	MallaTorreta->SetWorldScale3D(FVector(2.0f, 2.0f, 3.0f));
+	MallaTorreta->SetWorldScale3D(FVector(0.7f, 0.7f, 0.7f));
 
 	MallaTorreta->SetCollisionObjectType(ECC_WorldStatic);
 	MallaTorreta->SetCollisionResponseToAllChannels(ECR_Block);
 
 	bJugadorDetectado = false;
-	bEstaMuerta = false; // Inicializamos
+	bEstaMuerta = false;
 }
 
 void ATorreta::BeginPlay()
@@ -39,6 +39,15 @@ void ATorreta::Tick(float DeltaTime)
 		JugadorObjetivo = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
 		if (!JugadorObjetivo) return;
 	}
+
+	// --- ROTACIÓN SOLO EN EL EJE HORIZONTAL (YAW) ---
+	FVector Direccion = JugadorObjetivo->GetActorLocation() - GetActorLocation();
+	Direccion.Z = 0.0f; // Anulamos la altura para que no se incline
+	FRotator RotacionObjetivo = Direccion.Rotation();
+
+	// Interpolación suave para que gire de forma natural
+	FRotator NuevaRotacion = FMath::RInterpTo(GetActorRotation(), RotacionObjetivo, DeltaTime, 5.0f);
+	SetActorRotation(NuevaRotacion);
 
 	float Distancia = FVector::Dist(GetActorLocation(), JugadorObjetivo->GetActorLocation());
 
@@ -67,6 +76,7 @@ void ATorreta::DispararAlJugador()
 	if (!JugadorObjetivo || bEstaMuerta) return;
 
 	FVector SpawnLocation = GetActorLocation() + FVector(0, 0, 150.0f);
+	// La rotación del proyectil sí usa la posición real en 3D para poder alcanzar al jugador volador
 	FRotator SpawnRotation = (JugadorObjetivo->GetActorLocation() - SpawnLocation).Rotation();
 
 	FActorSpawnParameters Params;
@@ -92,9 +102,7 @@ float ATorreta::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, 
 
 void ATorreta::Destroyed()
 {
-	// MARCADA COMO MUERTA ANTES DE AVISAR
 	bEstaMuerta = true;
-
 	OnTorretaDestruida.Broadcast();
 	OnPeligroFinalizado.Broadcast();
 	Super::Destroyed();
